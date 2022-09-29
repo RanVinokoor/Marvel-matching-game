@@ -1,0 +1,141 @@
+* {
+    padding: 0;
+    margin: 0;
+    user-select: none;
+}
+
+@font-face {
+    font-family: 'AvengeroRegular';
+    src: url('../fonts/AvengeroRegular.ttf');
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'AvengeroRegular', sans-serif;
+
+    .box,
+    .box2 {
+        background-color: #0000006e;
+        border: 1px solid #ffffff8f;
+        border-radius: 5px;
+        z-index: 1;
+    }
+
+    .bottom {
+        display: flex;
+        justify-content: space-between;
+        width: 651px;
+    }
+
+    .game-cards {
+
+        width: 668px;
+        display: flex;
+        flex-wrap: wrap;
+        z-index: 1000;
+        animation-name: floating;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+
+        .game-card {
+
+            margin: 10px;
+            height: 120px;
+            width: 90px;
+            transition: 0.4s ease;
+
+            &:hover {
+
+                filter: brightness(1.25);
+                transition: 0.4s ease;
+            }
+        }
+    }
+
+    .game-cards {
+
+        .no-event {
+            pointer-events: none;
+        }
+    }
+
+    .game-card {
+        position: relative;
+        cursor: pointer;
+        perspective: 700px;
+
+    }
+
+    .game-card.flipped,
+    .game-card.has-match {
+
+        .game-back-card {
+            transform: rotateY(180deg);
+        }
+
+        .game-front-card {
+            transform: rotateY(360deg);
+        }
+    }
+
+    .game-back-card,
+    .game-front-card {
+        height: 130px;
+        width: 100px !important;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        backface-visibility: hidden;
+        box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.521);
+        transition: transform 400ms;
+    }
+
+    .game-front-card {
+        transform: rotateY(180deg);
+    }
+
+    .match-anim {
+        animation-name: glow;
+        animation-duration: 1.2s;
+        animation-direction: forward;
+        animation-timing-function: ease-in-out;
+    }
+}
+
+@keyframes floating {
+    0% {
+        transform: translate(0, 0px);
+    }
+
+    65% {
+        transform: translate(0, 4px);
+    }
+
+    100% {
+        transform: translate(0, 0px);
+    }
+}
+
+@keyframes glow {
+    0% {
+        filter: brightness(1);
+    }
+
+    65% {
+        filter: brightness(1.8);
+    }
+
+    100% {
+        filter: brightness(1);
+    }
+}
